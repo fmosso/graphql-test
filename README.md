@@ -1,1 +1,1 @@
-Based on the tutorial fo grapjql endpoint https://serverless.com/blog/make-serverless-graphql-api-using-lambda-dynamodb/
+Based on the tutorial for graphql endpoint https://serverless.com/blog/make-serverless-graphql-api-using-lambda-dynamodb/
