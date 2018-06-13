@@ -1,0 +1,1 @@
+Based on the tutorial fo grapjql endpoint https://serverless.com/blog/make-serverless-graphql-api-using-lambda-dynamodb/

@@ -1,0 +1,15 @@
+{
+  "name": "helloworld-graphql",
+  "version": "1.0.0",
+  "description": "hello-world with graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.256.1",
+    "graphql": "^0.13.2"
+  }
+}
