@@ -1,0 +1,59 @@
+service: bootstarp-api-js
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-west-2
+
+  # 'iamRoleStatements' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-west-2:*:*"
+
+functions:
+  get:
+    handler: get.main
+    events:
+      - http:
+          path: teams/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  create_team:
+    handler: create_team.main
+    events:
+      - http:
+          path: notes
+          method: put
+          cors: true
+          authorizer: aws_iam
+  delete_team:
+    handler: delete_team.main
+    events:
+      - http:
+          path: notes
+          method: delete
+          cors: true
+          authorizer: aws_iam
