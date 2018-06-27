@@ -1,0 +1,162 @@
+service: serverless-graphql-dynamo
+
+frameworkVersion: ">=1.21.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+
+plugins:
+  - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 4000
+  webpackIncludeModules: true
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      test:
+        sources:
+          - table: User
+            sources: [seed-data/User.json]
+          - table: Credential
+            sources: [seed-data/Credential.json]
+          - table: Perfil
+            sources: [seed-data/Perfil.json]
+
+functions:
+  graphql:
+    handler: handler.graphqlHandler
+    role: ServiceRole
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+  playground:
+    handler: handler.playgroundHandler
+    role: ServiceRole
+    events:
+    - http:
+        path: playground
+        method: get
+        cors: true
+  graphiql:
+    handler: handler.graphiqlHandler
+    role: ServiceRole
+    events:
+    - http:
+        path: graphiql
+        method: get
+        cors: true
+
+resources:
+  Resources:
+    UserTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        TableName: 'User'
+    PerfilTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          -
+            AttributeName: perfil_id
+            KeyType: HASH
+        AttributeDefinitions:
+          -
+            AttributeName: perfil_id
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        TableName: 'Perfil'
+    CredentialTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          -
+            AttributeName: mail
+            KeyType: HASH
+        AttributeDefinitions:
+          -
+            AttributeName: mail
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        TableName: 'Credential'
+
+    ServiceRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        RoleName: "DynamoRole2"
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            -
+              Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        Policies:
+          -
+            PolicyName: "Dynamo-ServiceRole-Policy"
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                -
+                  Effect: "Allow"
+                  Action:
+                    - "dynamodb:Query"
+                    - "dynamodb:BatchWriteItem"
+                    - "dynamodb:GetItem"
+                    - "dynamodb:DeleteItem"
+                    - "dynamodb:PutItem"
+                    - "dynamodb:Scan"
+                    - "dynamodb:UpdateItem"
+                  Resource:
+                    - "arn:aws:dynamodb:us-east-1:*:table/User"
+                    - "arn:aws:dynamodb:us-east-1:*:table/User/*"
+                    - "arn:aws:dynamodb:us-east-1:*:table/Perfil"
+                    - "arn:aws:dynamodb:us-east-1:*:table/Perfil/*"
+                    - "arn:aws:dynamodb:us-east-1:*:table/Credential"
+                    - "arn:aws:dynamodb:us-east-1:*:table/Credential/*"
+    XrayLambdaRolePolicy:
+      Type: "AWS::IAM::Policy"
+      Properties:
+        PolicyName: "xray-policy"
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            -
+              Effect: "Allow"
+              Action:
+                - "xray:PutTraceSegments"
+                - "xray:PutTelemetryRecords"
+              Resource:
+                - "*"
+        Roles:
+          - Ref: ServiceRole

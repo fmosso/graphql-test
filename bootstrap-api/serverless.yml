@@ -29,3 +29,11 @@ functions:
       - http:
           path: ping
           method: get
+          cors: true
+  graphql:
+    handler: com.graphql.Handler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true

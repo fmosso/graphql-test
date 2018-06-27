@@ -12,5 +12,8 @@ target
 *.war
 *.ear
 
+#mockdata
+/mockdata/
+
 # Serverless directories
 .serverless
