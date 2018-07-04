@@ -9,7 +9,7 @@ public class DBCreator {
 	String endpoint;
 	String region;
 	
-	DBCreator(String e, String r){
+	public DBCreator(String e, String r){
 		this.endpoint = e; 
 		this.region = r;
 	}

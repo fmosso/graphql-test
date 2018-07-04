@@ -1,11 +1,13 @@
 *.class
 .gradle
+/ .metadata /
 /build/
 /bin/
 /.settings/
 .project
 .classpath
 target
+*.log
 
 # Package Files
 *.jar

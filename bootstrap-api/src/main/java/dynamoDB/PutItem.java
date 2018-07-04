@@ -1,45 +1,23 @@
 package dynamoDB;
 
 
-	// Copyright 2012-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-	// Licensed under the Apache License, Version 2.0.
-
-
-	import java.util.HashMap;
-	import java.util.Map;
 
 	import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 	import com.amazonaws.services.dynamodbv2.document.Item;
-	import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
-	import com.amazonaws.services.dynamodbv2.document.Table;
 
-	public class PutItem {
+	public class PutItem extends AbstractDynamoOperation {
 
-	    public static void main(String[] args) throws Exception {
-
-	    	DynamoDB dynamoDB = new DBCreator("http://localhost:8000","us-west-2").makeDB();
-
-	        Table table = dynamoDB.getTable("Movies");
-
-	        int year = 2015;
-	        String title = "The Big New Movie";
-
-	        final Map<String, Object> infoMap = new HashMap<String, Object>();
-	        infoMap.put("plot", "Nothing happens at all.");
-	        infoMap.put("rating", 0);
-
-	        try {
-	            System.out.println("Adding a new item...");
-	            PutItemOutcome outcome = table
-	                .putItem(new Item().withPrimaryKey("year", year, "title", title).withMap("info", infoMap));
-
-	            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
-
-	        }
+		PutItem(DynamoDB db) {
+			super(db);
+		}
+		
+		public void put(String Table, Item item) {
+			try {
+				this.dynamoDB.getTable(Table).putItem(item);
+			}
 	        catch (Exception e) {
-	            System.err.println("Unable to add item: " + year + " " + title);
 	            System.err.println(e.getMessage());
 	        }
+		}
 
-	    }
 	}
