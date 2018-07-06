@@ -5,6 +5,9 @@ public class Credential {
 	String mail;
 	
 	Credential(){}
+	public Credential(String mail){
+		this.mail = mail;
+	}
 	
 	public String getMail() {
 		return mail;

@@ -16,15 +16,19 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.lambda.runtime.Context;
 
 import dynamoDB.ItemBuilder;
+import teamsPOJO.Credential;
+import teamsPOJO.ID;
+import teamsPOJO.Perfil;
 
-public class MyFirstFunctio {
+public class RegisterUserResolveTest {
 
-    private static TeamName input;
+    private static Mail input;
 
     @BeforeClass
     public static void createInput() throws IOException {
         // TODO: set up your sample input object here.
-        input = new TeamName("equipo2");
+        input = new Mail();
+        input.setMail("hola@mu@ndo.cl");
     }
 
 
@@ -40,10 +44,10 @@ public class MyFirstFunctio {
 
     @Test
     public void testExampleHanlder() {
-    	ExampleHandler handler = new ExampleHandler();
+    	RegisterUserResolver handler = new RegisterUserResolver();
         Context ctx = createContext();
 
-        Team output = handler.handleRequest(input, ctx);
+        Boolean output = handler.handleRequest(input, ctx);
         System.out.println(output);
         
         

@@ -16,10 +16,11 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.lambda.runtime.Context;
 
 import dynamoDB.ItemBuilder;
+import teamsPOJO.Credential;
 import teamsPOJO.ID;
 import teamsPOJO.Perfil;
 
-public class GetResolverTest {
+public class GetAllCredentialsTest {
 
     private static ID input;
 
@@ -43,12 +44,11 @@ public class GetResolverTest {
 
     @Test
     public void testExampleHanlder() {
-    	GetPerfilResolver handler = new GetPerfilResolver();
+    	GetAllCredentialsResolver handler = new GetAllCredentialsResolver();
         Context ctx = createContext();
 
-        Perfil output = handler.handleRequest(input, ctx);
-        System.out.println(output.getName());
-        System.out.println(output.getLast_name());
+        List<Credential> output = handler.handleRequest(input, ctx);
+        System.out.println(output);
         
         
         Assert.assertTrue(true);

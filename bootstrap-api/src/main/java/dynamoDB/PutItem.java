@@ -7,7 +7,7 @@ package dynamoDB;
 
 	public class PutItem extends AbstractDynamoOperation {
 
-		PutItem(DynamoDB db) {
+		public PutItem(DynamoDB db) {
 			super(db);
 		}
 		
