@@ -12,9 +12,24 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class LoadData {
+public class LoadData extends AbstractDynamoOperation{
 
-    public static void main(String[] args) throws Exception {
+    LoadData(DynamoDB db) {
+		super(db);
+	}
+    
+    public void upload(String t,String fileName) {
+    	Table table =  dynamoDB.getTable(t);
+    	try {
+    		JsonParser parser = new JsonFactory().createParser(new File(fileName));
+    	}
+        catch (Exception e) {
+            System.err.println("Unable to add movie: ");
+            System.err.println(e.getMessage());
+        }
+    }
+
+	public static void main(String[] args) throws Exception {
     	
     	DynamoDB dynamoDB = new DBCreator("http://localhost:8000","us-west-2").makeDB();
 

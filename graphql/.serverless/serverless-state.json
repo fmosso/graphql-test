@@ -1,12 +1,12 @@
 {
   "service": {
-    "service": "serverless-graphql-dynamo",
+    "service": "serveless-graphql-api",
     "serviceObject": {
-      "name": "serverless-graphql-dynamo"
+      "name": "serveless-graphql-api"
     },
     "provider": {
       "stage": "dev",
-      "region": "us-east-1",
+      "region": "us-east-2",
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
       "runtime": "nodejs6.10",
@@ -22,19 +22,19 @@
           "GraphqlLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-graphql-dynamo-dev-graphql"
+              "LogGroupName": "/aws/lambda/serveless-graphql-api-dev-graphql"
             }
           },
           "PlaygroundLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-graphql-dynamo-dev-playground"
+              "LogGroupName": "/aws/lambda/serveless-graphql-api-dev-playground"
             }
           },
           "GraphiqlLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-graphql-dynamo-dev-graphiql"
+              "LogGroupName": "/aws/lambda/serveless-graphql-api-dev-graphiql"
             }
           },
           "GraphqlLambdaFunction": {
@@ -44,9 +44,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-graphql-dynamo/dev/1530125052216-2018-06-27T18:44:12.216Z/serverless-graphql-dynamo.zip"
+                "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
               },
-              "FunctionName": "serverless-graphql-dynamo-dev-graphql",
+              "FunctionName": "serveless-graphql-api-dev-graphql",
               "Handler": "handler.graphqlHandler",
               "MemorySize": 1024,
               "Role": {
@@ -63,14 +63,14 @@
               "ServiceRole"
             ]
           },
-          "GraphqlLambdaVersiontZuE8msPiHzmuEscqtpAcYtrcUE13ZCdtXL3UWZwRY": {
+          "GraphqlLambdaVersionfOvlVTAsvZPi93ZVzSgByyccjiLGXJTjV0HX6gPxc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GraphqlLambdaFunction"
               },
-              "CodeSha256": "Kme0orsKLbHMZ0h40R8qHdKeYQNCFG0GJnRwagtj35Y="
+              "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
             }
           },
           "PlaygroundLambdaFunction": {
@@ -80,9 +80,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-graphql-dynamo/dev/1530125052216-2018-06-27T18:44:12.216Z/serverless-graphql-dynamo.zip"
+                "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
               },
-              "FunctionName": "serverless-graphql-dynamo-dev-playground",
+              "FunctionName": "serveless-graphql-api-dev-playground",
               "Handler": "handler.playgroundHandler",
               "MemorySize": 1024,
               "Role": {
@@ -99,14 +99,14 @@
               "ServiceRole"
             ]
           },
-          "PlaygroundLambdaVersionkorplV2Z2NTdETntcfod7dRRjdJvavEmWT6IINjEwWI": {
+          "PlaygroundLambdaVersioneObLFpRZtso6gqCCSOhcgT48adFPsX0JDtKuMsbWgg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PlaygroundLambdaFunction"
               },
-              "CodeSha256": "Kme0orsKLbHMZ0h40R8qHdKeYQNCFG0GJnRwagtj35Y="
+              "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
             }
           },
           "GraphiqlLambdaFunction": {
@@ -116,9 +116,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-graphql-dynamo/dev/1530125052216-2018-06-27T18:44:12.216Z/serverless-graphql-dynamo.zip"
+                "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
               },
-              "FunctionName": "serverless-graphql-dynamo-dev-graphiql",
+              "FunctionName": "serveless-graphql-api-dev-graphiql",
               "Handler": "handler.graphiqlHandler",
               "MemorySize": 1024,
               "Role": {
@@ -135,20 +135,20 @@
               "ServiceRole"
             ]
           },
-          "GraphiqlLambdaVersion28Pvhnicmo86eDCU05J52PhrxGOQMEADI3eEqtUvaY": {
+          "GraphiqlLambdaVersionl9pJ5TfjhQfaLyYWSuq3ZI4jEBQbRi6XnznETK5U4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GraphiqlLambdaFunction"
               },
-              "CodeSha256": "Kme0orsKLbHMZ0h40R8qHdKeYQNCFG0GJnRwagtj35Y="
+              "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-serverless-graphql-dynamo",
+              "Name": "dev-serveless-graphql-api",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -468,7 +468,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1530125052392": {
+          "ApiGatewayDeployment1531335053175": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -727,12 +727,8 @@
                           "dynamodb:UpdateItem"
                         ],
                         "Resource": [
-                          "arn:aws:dynamodb:us-east-1:*:table/User",
-                          "arn:aws:dynamodb:us-east-1:*:table/User/*",
-                          "arn:aws:dynamodb:us-east-1:*:table/Perfil",
-                          "arn:aws:dynamodb:us-east-1:*:table/Perfil/*",
-                          "arn:aws:dynamodb:us-east-1:*:table/Credential",
-                          "arn:aws:dynamodb:us-east-1:*:table/Credential/*"
+                          "arn:aws:dynamodb:us-east-2:*:table/*",
+                          "arn:aws:dynamodb:us-east-2:*:table/*/*"
                         ]
                       }
                     ]
@@ -777,19 +773,19 @@
           "GraphqlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GraphqlLambdaVersiontZuE8msPiHzmuEscqtpAcYtrcUE13ZCdtXL3UWZwRY"
+              "Ref": "GraphqlLambdaVersionfOvlVTAsvZPi93ZVzSgByyccjiLGXJTjV0HX6gPxc"
             }
           },
           "PlaygroundLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PlaygroundLambdaVersionkorplV2Z2NTdETntcfod7dRRjdJvavEmWT6IINjEwWI"
+              "Ref": "PlaygroundLambdaVersioneObLFpRZtso6gqCCSOhcgT48adFPsX0JDtKuMsbWgg"
             }
           },
           "GraphiqlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GraphiqlLambdaVersion28Pvhnicmo86eDCU05J52PhrxGOQMEADI3eEqtUvaY"
+              "Ref": "GraphiqlLambdaVersionl9pJ5TfjhQfaLyYWSuq3ZI4jEBQbRi6XnznETK5U4"
             }
           },
           "ServiceEndpoint": {
@@ -802,7 +798,7 @@
                   {
                     "Ref": "ApiGatewayRestApi"
                   },
-                  ".execute-api.us-east-1.",
+                  ".execute-api.us-east-2.",
                   {
                     "Ref": "AWS::URLSuffix"
                   },
@@ -906,9 +902,9 @@
             }
           }
         ],
-        "name": "serverless-graphql-dynamo-dev-graphql",
+        "name": "serveless-graphql-api-dev-graphql",
         "package": {
-          "artifact": ".serverless/serverless-graphql-dynamo.zip"
+          "artifact": ".serverless/serveless-graphql-api.zip"
         },
         "vpc": {}
       },
@@ -943,9 +939,9 @@
             }
           }
         ],
-        "name": "serverless-graphql-dynamo-dev-playground",
+        "name": "serveless-graphql-api-dev-playground",
         "package": {
-          "artifact": ".serverless/serverless-graphql-dynamo.zip"
+          "artifact": ".serverless/serveless-graphql-api.zip"
         },
         "vpc": {}
       },
@@ -980,9 +976,9 @@
             }
           }
         ],
-        "name": "serverless-graphql-dynamo-dev-graphiql",
+        "name": "serveless-graphql-api-dev-graphiql",
         "package": {
-          "artifact": ".serverless/serverless-graphql-dynamo.zip"
+          "artifact": ".serverless/serveless-graphql-api.zip"
         },
         "vpc": {}
       }
@@ -1093,12 +1089,8 @@
                         "dynamodb:UpdateItem"
                       ],
                       "Resource": [
-                        "arn:aws:dynamodb:us-east-1:*:table/User",
-                        "arn:aws:dynamodb:us-east-1:*:table/User/*",
-                        "arn:aws:dynamodb:us-east-1:*:table/Perfil",
-                        "arn:aws:dynamodb:us-east-1:*:table/Perfil/*",
-                        "arn:aws:dynamodb:us-east-1:*:table/Credential",
-                        "arn:aws:dynamodb:us-east-1:*:table/Credential/*"
+                        "arn:aws:dynamodb:us-east-2:*:table/*",
+                        "arn:aws:dynamodb:us-east-2:*:table/*/*"
                       ]
                     }
                   ]
@@ -1138,7 +1130,7 @@
     }
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-graphql-dynamo/dev/1530125052216-2018-06-27T18:44:12.216Z",
+    "artifactDirectoryName": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z",
     "artifact": ""
   }
 }

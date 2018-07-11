@@ -27,8 +27,8 @@ public class TestDB {
 	//	attributesToUpdate.put("Tag", "Actualizadp "  );
 	//	new UpdateItem(dynamoDB).update(table, "Name" , "equipo2", attributesToUpdate);
 	//	System.out.println(new GetItem(dynamoDB).get(table, "Name" , "equipo2" ));
-		
-		
+		String table =  "Credential";
+
 		System.out.println("hi");
 	}
 	

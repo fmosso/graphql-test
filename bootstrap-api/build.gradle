@@ -20,6 +20,7 @@ dependencies {
     )
      testCompile 'junit:junit:4.12'
      compile group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+     compile group: 'com.opencsv', name: 'opencsv', version: '4.0'
 }
 
  
