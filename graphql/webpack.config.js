@@ -13,6 +13,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
+          'awesome-typescript-loader',
           'imports-loader?graphql',
           {
             loader: 'babel-loader',
@@ -23,6 +24,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
     libraryTarget: 'commonjs',
