@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const aws_sdk_1 = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
-aws_sdk_1.default.config.update({
+const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
+AWS.config.update({
     region: "us-east-2",
 });
-const dynamoDb = new aws_sdk_1.default.DynamoDB.DocumentClient();
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
 function scan(params) {
     return new Promise((resolve, reject) => dynamoDb.scan(params).promise()
         .then(data => resolve(data.Items))

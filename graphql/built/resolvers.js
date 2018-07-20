@@ -1,30 +1,22 @@
 "use strict";
 // add to handler.js
 Object.defineProperty(exports, "__esModule", { value: true });
-const v4_1 = require("uuid/v4");
+const uuid = require("uuid");
 const db = require("./dynamo");
-const validate_js_1 = require("validate.js");
+const validate = require("validate.js");
 const Mail = require("./Mail");
 function isMailValid(mail) {
-    var constraints = {
+    const constraints = {
         from: {
             email: true
         }
     };
-    const response = validate_js_1.default({ from: mail }, constraints);
-    if (response === undefined) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return validate({ from: mail }, constraints) === undefined;
 }
 function getPerfilData(id) {
-    var params = {
+    const params = {
         TableName: 'Perfil',
-        Key: {
-            'perfil_id': id,
-        },
+        Key: { "perfil_id": id },
     };
     const result = db.get(params);
     return result.then(result => {
@@ -58,9 +50,9 @@ function getCredential(id) {
         },
     };
     const result = db.get(params);
-    return result.then(result => {
+    return result.then((re) => {
         var r = [];
-        for (const value of result.credentials) {
+        for (const value of re.credentials) {
             r.push({ 'mail': value });
         }
         ;
@@ -71,8 +63,10 @@ function registerUser(mail) {
     if (!isMailValid(mail)) {
         return false;
     }
-    const userId = v4_1.default();
-    var paramsCredential = {
+    console.log("id");
+    const userId = uuid.v4();
+    console.log("paso id");
+    const paramsCredential = {
         TableName: 'Credential',
         Item: {
             'mail': mail,
@@ -81,7 +75,8 @@ function registerUser(mail) {
     };
     const credentialResult = db.createItem(paramsCredential);
     credentialResult.then(result => console.log(result), error => console.log(error));
-    var paramUser = {
+    console.log("credencial guadarda");
+    const paramUser = {
         TableName: 'User',
         Item: {
             'id': userId,
@@ -99,7 +94,7 @@ function registerUser(mail) {
     });
 }
 function confirmUser(id) {
-    var paramUser = {
+    const paramUser = {
         TableName: 'User',
         Key: {
             'id': id,
@@ -111,7 +106,7 @@ function confirmUser(id) {
         ExpressionAttributeNames: { "#s": "status" },
         ReturnValues: "UPDATED_NEW"
     };
-    return db.updateItem(paramUser).then(result => {
+    return db.updateItem(paramUser, "").then(result => {
         console.log(result);
         return true;
     }, error => {

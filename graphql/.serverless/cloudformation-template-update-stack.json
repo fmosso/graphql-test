@@ -30,7 +30,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
+          "S3Key": "serverless/serveless-graphql-api/dev/1532093036909-2018-07-20T13:23:56.909Z/serveless-graphql-api.zip"
         },
         "FunctionName": "serveless-graphql-api-dev-graphql",
         "Handler": "handler.graphqlHandler",
@@ -49,14 +49,14 @@
         "ServiceRole"
       ]
     },
-    "GraphqlLambdaVersionfOvlVTAsvZPi93ZVzSgByyccjiLGXJTjV0HX6gPxc": {
+    "GraphqlLambdaVersionPB73lZ2movNmV4MhpPAqxnTemZsIfz3NZGMeb2IPtA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
+        "CodeSha256": "+HkrD3351CMVoUmrds1VzhgSwC2bTxGJFhrLQB+Ubkc="
       }
     },
     "PlaygroundLambdaFunction": {
@@ -66,7 +66,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
+          "S3Key": "serverless/serveless-graphql-api/dev/1532093036909-2018-07-20T13:23:56.909Z/serveless-graphql-api.zip"
         },
         "FunctionName": "serveless-graphql-api-dev-playground",
         "Handler": "handler.playgroundHandler",
@@ -85,14 +85,14 @@
         "ServiceRole"
       ]
     },
-    "PlaygroundLambdaVersioneObLFpRZtso6gqCCSOhcgT48adFPsX0JDtKuMsbWgg": {
+    "PlaygroundLambdaVersionewioS5uyXOpNnYKGz9AWYlC11Y6lCJ5qRaBM9weY0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PlaygroundLambdaFunction"
         },
-        "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
+        "CodeSha256": "+HkrD3351CMVoUmrds1VzhgSwC2bTxGJFhrLQB+Ubkc="
       }
     },
     "GraphiqlLambdaFunction": {
@@ -102,7 +102,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serveless-graphql-api/dev/1531335052841-2018-07-11T18:50:52.841Z/serveless-graphql-api.zip"
+          "S3Key": "serverless/serveless-graphql-api/dev/1532093036909-2018-07-20T13:23:56.909Z/serveless-graphql-api.zip"
         },
         "FunctionName": "serveless-graphql-api-dev-graphiql",
         "Handler": "handler.graphiqlHandler",
@@ -121,14 +121,14 @@
         "ServiceRole"
       ]
     },
-    "GraphiqlLambdaVersionl9pJ5TfjhQfaLyYWSuq3ZI4jEBQbRi6XnznETK5U4": {
+    "GraphiqlLambdaVersion5rWstRVUy4GYGtkSx8WGFWFaKtF2ddxagclZMWb2Dk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphiqlLambdaFunction"
         },
-        "CodeSha256": "FIeYGgNedk6Vxu2Bphl/O3HBDvUC5EUL3qbICcmgaH8="
+        "CodeSha256": "+HkrD3351CMVoUmrds1VzhgSwC2bTxGJFhrLQB+Ubkc="
       }
     },
     "ApiGatewayRestApi": {
@@ -454,7 +454,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1531335053175": {
+    "ApiGatewayDeployment1532093036921": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -759,19 +759,19 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersionfOvlVTAsvZPi93ZVzSgByyccjiLGXJTjV0HX6gPxc"
+        "Ref": "GraphqlLambdaVersionPB73lZ2movNmV4MhpPAqxnTemZsIfz3NZGMeb2IPtA"
       }
     },
     "PlaygroundLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PlaygroundLambdaVersioneObLFpRZtso6gqCCSOhcgT48adFPsX0JDtKuMsbWgg"
+        "Ref": "PlaygroundLambdaVersionewioS5uyXOpNnYKGz9AWYlC11Y6lCJ5qRaBM9weY0"
       }
     },
     "GraphiqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphiqlLambdaVersionl9pJ5TfjhQfaLyYWSuq3ZI4jEBQbRi6XnznETK5U4"
+        "Ref": "GraphiqlLambdaVersion5rWstRVUy4GYGtkSx8WGFWFaKtF2ddxagclZMWb2Dk"
       }
     },
     "ServiceEndpoint": {

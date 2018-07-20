@@ -13,7 +13,6 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          'awesome-typescript-loader',
           'imports-loader?graphql',
           {
             loader: 'babel-loader',
@@ -23,6 +22,13 @@ module.exports = {
           },
         ],
       },
+
+      {
+          test: /\.tsx?$/,
+          exclude: path.resolve(__dirname, 'node_modules'),
+          include: path.resolve(__dirname, 'src'),
+          use: 'awesome-typescript-loader',
+        },
     ],
   },
   resolve: {

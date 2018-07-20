@@ -1,5 +1,5 @@
 
-import AWS from 'aws-sdk'; // eslint-disable-line import/no-extraneous-dependencies
+import AWS =  require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 
 AWS.config.update({
   region: "us-east-2",
@@ -8,9 +8,9 @@ AWS.config.update({
   // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
 });
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const dynamoDb : AWS.DynamoDB.DocumentClient  = new AWS.DynamoDB.DocumentClient();
 
-export function scan(params) {
+export function scan(params : AWS.DynamoDB.DocumentClient.QueryInput ) : Promise<AWS.DynamoDB.DocumentClient.AttributeMap[]>  {
   return new Promise((resolve, reject) =>
     dynamoDb.scan(params).promise()
       .then(data => resolve(data.Items))
@@ -18,7 +18,7 @@ export function scan(params) {
   );
 }
 
-export function get(params) {
+export function get(params : AWS.DynamoDB.DocumentClient.GetItemInput) : Promise<AWS.DynamoDB.DocumentClient.AttributeMap> {
   return new Promise((resolve, reject) =>
     dynamoDb.get(params).promise()
       .then(data => resolve(data.Item))
@@ -26,7 +26,7 @@ export function get(params) {
   );
 }
 
-export function createItem(params) {
+export function createItem(params : AWS.DynamoDB.DocumentClient.PutItemInput) :Promise<AWS.DynamoDB.DocumentClient.AttributeMap>  {
   return new Promise((resolve, reject) =>
     dynamoDb.put(params).promise()
       .then(() => resolve(params.Item))
@@ -34,7 +34,7 @@ export function createItem(params) {
   );
 }
 
-export function updateItem(params, args) {
+export function updateItem(params : AWS.DynamoDB.DocumentClient.UpdateItemInput, args? : string) : Promise<string>   {
   return new Promise((resolve, reject) =>
     dynamoDb.update(params).promise()
       .then(() => resolve(args))
@@ -42,7 +42,7 @@ export function updateItem(params, args) {
   );
 }
 
-export function deleteItem(params, args) {
+export function deleteItem(params : AWS.DynamoDB.DocumentClient.DeleteItemInput, args : string) : Promise<string>   {
   return new Promise((resolve, reject) =>
     dynamoDb.delete(params).promise()
       .then(() => resolve(args))
