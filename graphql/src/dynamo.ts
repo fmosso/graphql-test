@@ -1,14 +1,12 @@
 
 import AWS =  require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 
-AWS.config.update({
-  region: "us-east-2",
-  //endpoint: "http://localhost:8000",
-  // accessKeyId default can be used while using the downloadable version of DynamoDB.
-  // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
-});
+const dynamoDb : AWS.DynamoDB.DocumentClient  = new AWS.DynamoDB.DocumentClient( {
+    region: "us-east-2",
+   // endpoint: "http://localhost:8000",
+    convertEmptyValues: true
+}); 
 
-const dynamoDb : AWS.DynamoDB.DocumentClient  = new AWS.DynamoDB.DocumentClient();
 
 export function scan(params : AWS.DynamoDB.DocumentClient.QueryInput ) : Promise<AWS.DynamoDB.DocumentClient.AttributeMap[]>  {
   return new Promise((resolve, reject) =>

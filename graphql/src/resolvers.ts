@@ -90,24 +90,7 @@ function registerUser(mail : string) : Promise<boolean> {
                                               return false});
 }
 
-function confirmUser(id : string) : Promise<boolean> {
-    const  paramUser : AWS.DynamoDB.DocumentClient.UpdateItemInput = {
-        TableName: 'User',
-        Key:{
-            'id': id,
-        },   
-        UpdateExpression : "set #s = :s" ,
-        ExpressionAttributeValues:{
-            ":s":true,
-        },
-        ExpressionAttributeNames: {"#s":"status2"},
-        ReturnValues:"UPDATED_NEW"
-    };
-    return db.updateItem(paramUser).then(result => {console.log(result)
-                                      return true }, 
-                        error => {console.log(error) 
-                                  return false});
-}    
+
 
 
 
@@ -120,7 +103,6 @@ export const resolvers = {
   },
   Mutation: {
     registerUser: (root, args) => registerUser(args.mail),
-    confirmUser: (root, args) => confirmUser(args.id)
   },
 
 };

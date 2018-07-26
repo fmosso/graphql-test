@@ -3,16 +3,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var nodemailer = require("nodemailer");
 var xoauth2 = require('xoauth2');
-var smtpConfig = {
+const credential = require("./credentials");
+const smtpConfig = {
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-        user: "user",
-        pass: "pass"
+        user: credential.mailUser,
+        pass: credential.mailPassword
     }
 };
-var poolConfig = {
+const poolConfig = {
     pool: true,
     host: 'smtp.gmail.com',
     port: 465,

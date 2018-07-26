@@ -1,8 +1,6 @@
-
-
-const promesa  = new Promise((resolve, reject) => {
-    resolve(false);
-});
-promesa.then()
-
-console.log(promesa)
+if ('hola' !== undefined) {
+           console.log("bien")
+}
+else {
+          console.log("mal")
+}

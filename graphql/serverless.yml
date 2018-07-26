@@ -58,6 +58,15 @@ functions:
         method: get
         cors: true
 
+  userConfirmation:
+    handler: handler.userConfirmation
+    role: ServiceRole
+    events:
+    - http:
+        path: confirmation/{token}
+        method: get
+	cors: true
+
 resources:
   Resources:
     UserTable:

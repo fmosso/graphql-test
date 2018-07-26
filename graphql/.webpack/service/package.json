@@ -1,0 +1,18 @@
+{
+  "name": "serveless-graphql-api",
+  "version": "1.0.0",
+  "description": "Packaged externals for serveless-graphql-api",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "graphql": "^0.10.5",
+    "apollo-server-lambda": "1.3.2",
+    "graphql-playground-middleware-lambda": "^1.2.0",
+    "aws-lambda": "",
+    "graphql-tools": "2.7.2",
+    "uuid": "",
+    "validate.js": "^0.12.0",
+    "nodemailer": "^4.6.7",
+    "xoauth2": "^1.2.0"
+  }
+}

@@ -50,7 +50,7 @@
     "jsonfile": "^4.0.0",
     "serverless-dynamodb-local": "^0.2.26",
     "serverless-offline": "^3.15.3",
-    "serverless-webpack": "^4.1.0",
+    "serverless-webpack": "^5.2.0",
     "ts-loader": "^4.4.2",
     "typescript": "^2.9.2",
     "typings": "latest",

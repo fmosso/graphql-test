@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
 const db = require("./dynamo");
 const validate = require("validate.js");
-const Mail = require("./Mail");
+const Mail = require("./mail");
 function isMailValid(mail) {
     const constraints = {
         from: {
@@ -19,16 +19,7 @@ function getPerfilData(id) {
         Key: { "perfil_id": id },
     };
     const result = db.get(params);
-    return result.then(result => {
-        const perfil = {
-            perfil_id: result.perfil_id,
-            name: result.name,
-            last_name: result.last_name,
-            phone: result.phone,
-            photo: result.photo,
-        };
-        return perfil;
-    }, error => console.log(error));
+    return result.then((result) => { return result; }, error => console.log(error));
 }
 function getPerfilQ(id) {
     var params = {
@@ -38,7 +29,7 @@ function getPerfilQ(id) {
         },
     };
     const result = db.get(params);
-    return result.then(result => {
+    return result.then((result) => {
         return getPerfilData(result.perfil_id);
     }, error => console.log(error));
 }
@@ -61,11 +52,11 @@ function getCredential(id) {
 }
 function registerUser(mail) {
     if (!isMailValid(mail)) {
-        return false;
+        return new Promise((resolve, reject) => {
+            resolve(false);
+        });
     }
-    console.log("id");
     const userId = uuid.v4();
-    console.log("paso id");
     const paramsCredential = {
         TableName: 'Credential',
         Item: {
@@ -73,9 +64,7 @@ function registerUser(mail) {
             'userId': userId,
         }
     };
-    const credentialResult = db.createItem(paramsCredential);
-    credentialResult.then(result => console.log(result), error => console.log(error));
-    console.log("credencial guadarda");
+    db.createItem(paramsCredential).then(result => console.log(result), error => console.log(error));
     const paramUser = {
         TableName: 'User',
         Item: {
@@ -83,9 +72,8 @@ function registerUser(mail) {
             'status': false,
         }
     };
-    const userResult = db.createItem(paramUser);
     Mail.send(mail, userId);
-    return userResult.then(result => {
+    return db.createItem(paramUser).then(result => {
         console.log(result);
         return true;
     }, error => {
@@ -103,10 +91,10 @@ function confirmUser(id) {
         ExpressionAttributeValues: {
             ":s": true,
         },
-        ExpressionAttributeNames: { "#s": "status" },
+        ExpressionAttributeNames: { "#s": "status2" },
         ReturnValues: "UPDATED_NEW"
     };
-    return db.updateItem(paramUser, "").then(result => {
+    return db.updateItem(paramUser).then(result => {
         console.log(result);
         return true;
     }, error => {

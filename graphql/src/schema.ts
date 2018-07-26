@@ -3,7 +3,6 @@ type Mutation {
     # add credential for user
     AddCredential(id : String!, mail: String!) : User!
     registerUser(mail: String!) : Boolean!
-    confirmUser(id: String!) : Boolean!
 }
 
 type Query {
