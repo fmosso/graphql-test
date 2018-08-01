@@ -13,3 +13,8 @@ export interface IUser extends AWS.DynamoDB.DocumentClient.AttributeMap{
 			status: boolean
 			perfil_id: string
 }
+
+export interface ICredential extends AWS.DynamoDB.DocumentClient.AttributeMap{
+            mail : string
+            userId : string
+}

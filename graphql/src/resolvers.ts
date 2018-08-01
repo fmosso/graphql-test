@@ -61,6 +61,7 @@ function getCredential(id : string) : Promise< void| AWS.DynamoDB.DocumentClient
 
 function registerUser(mail : string) : Promise<boolean> {
     if (! isMailValid(mail)){
+      console.log("Mail no valido")
       return new Promise((resolve, reject) => {
                       resolve(false);})
     }
@@ -70,25 +71,31 @@ function registerUser(mail : string) : Promise<boolean> {
         Item:{
             'mail': mail,
             'userId': userId,
-        }
-    };
+        },
+        ConditionExpression: "attribute_not_exists(mail)"
+        };
 
-    db.createItem(paramsCredential).then(result => console.log(result), 
-                                         error => console.log(error));
+    return db.createItem(paramsCredential).then(result => {console.log("credencial creada" )
+                                                            const  paramUser : AWS.DynamoDB.DocumentClient.PutItemInput = {
+                                                                       TableName: 'User',
+                                                                       Item:{
+                                                                              'id': userId,
+                                                                              'status': false,
+                                                                            }
+                                                            };
+                                                            return db.createItem(paramUser).then(result => {console.log("usuario creado")
+                                                                                                            Mail.send(mail,userId)
+                                                                                                            return true }, 
+                                                                                                error => {console.log("error al crear usuario") 
+                                                                                                          return false});
+             
+                                                    }, 
+                                                    error => { console.log("Mail ya Registrado")
+                                                                return false
+                                                             } );
 
-    const  paramUser : AWS.DynamoDB.DocumentClient.PutItemInput = {
-        TableName: 'User',
-        Item:{
-            'id': userId,
-            'status': false,
-        }
-    };
-    Mail.send(mail,userId)
-    return db.createItem(paramUser).then(result => {console.log(result)
-                                              return true }, 
-                                         error => {console.log(error) 
-                                              return false});
-}
+
+ }
 
 
 

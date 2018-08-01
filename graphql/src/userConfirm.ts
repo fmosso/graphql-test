@@ -5,12 +5,6 @@ import * as schemaTypes from './schemaTypes'
 
 
 export function confirmUser(id : string) : Promise<string> {
-     const paramsGet : AWS.DynamoDB.DocumentClient.GetItemInput  = {
-      TableName: 'User',
-          Key: {
-            'id': id,
-      },
-    };
     const  paramUser : AWS.DynamoDB.DocumentClient.UpdateItemInput = {
         TableName: 'User',
         Key:{
@@ -20,19 +14,12 @@ export function confirmUser(id : string) : Promise<string> {
         ExpressionAttributeValues:{
             ":s":true,
         },
+        ConditionExpression: "attribute_exists(id)",
         ExpressionAttributeNames: {"#s":"status"},
         ReturnValues:"UPDATED_NEW"
     };
-    return  db.get(paramsGet).then(result => {   if (result !== undefined) {
-                                                        return db.updateItem(paramUser).then(result => {return "actualizado" }, 
-                                                                                              error => {return  "encantrado pero no actualizado"});
-                                                    }
-                                                      else {
-                                                         return "no encontrado" 
-                                                     }              
-                                              },
-                                              error => { console.log(error)
-                                                         return "fail" })
+    return db.updateItem(paramUser).then(result => {return "actualizado" }, 
+                                         error => {return  "Usuario no encontrado"});
 }    
 
 

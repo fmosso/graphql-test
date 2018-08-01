@@ -30,7 +30,7 @@ var smtpTransport = nodemailer.createTransport(smtpConfig);
 
 export function send(mail, id){
    const link = "https://neuzkzc4df.execute-api.us-east-2.amazonaws.com/dev/confirmation/"
-   // const link = "http://localhost:4000/confirmation/"
+  // const link = "http://localhost:4000/confirmation/"
    const body =  "Hello sr:"+mail+",<br> Please Click on the link to verify your email.<br><a href="+link+id+ ">Click here to verify</a>"
    var mailOptions = {
         from: " Stack Bio  <awsfreetrial2018@gmail.com>", // sender address
