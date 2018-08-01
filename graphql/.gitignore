@@ -8,9 +8,11 @@
 
 # production
 /build
+/built
 /lib
 /dist
 /.webpack
+/.serverless
 
 # misc
 .DS_Store
