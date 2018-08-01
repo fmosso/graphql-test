@@ -10,12 +10,12 @@ export function confirmUser(id : string) : Promise<string> {
         Key:{
             'id': id,
         },   
-        UpdateExpression : "set #s = :s" ,
+        UpdateExpression : "set #ic = :s" ,
         ExpressionAttributeValues:{
             ":s":true,
         },
         ConditionExpression: "attribute_exists(id)",
-        ExpressionAttributeNames: {"#s":"status"},
+        ExpressionAttributeNames: {"#ic":"isConfirmed"},
         ReturnValues:"UPDATED_NEW"
     };
     return db.updateItem(paramUser).then(result => {return "actualizado" }, 

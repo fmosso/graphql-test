@@ -10,8 +10,10 @@ export interface IPerfil extends AWS.DynamoDB.DocumentClient.AttributeMap{
 
 export interface IUser extends AWS.DynamoDB.DocumentClient.AttributeMap{
             id: string,
-			status: boolean
-			perfil_id: string
+		isConfirmed: boolean
+            password: string
+		perfil_id: string
+            isActive: boolean
 }
 
 export interface ICredential extends AWS.DynamoDB.DocumentClient.AttributeMap{

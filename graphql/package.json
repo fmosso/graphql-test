@@ -21,6 +21,7 @@
     "awesome-typescript-loader": "^5.2.0",
     "aws-xray-sdk": "^1.2.0",
     "babel-polyfill": "^6.26.0",
+    "bcrypt": "1.0.3",
     "bluebird": "^3.5.1",
     "graphql": "^0.10.5",
     "graphql-playground-middleware-lambda": "^1.2.0",

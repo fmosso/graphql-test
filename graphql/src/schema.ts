@@ -1,7 +1,9 @@
 const schema = `
 type Mutation {
     # add credential for user
-    AddCredential(id : String!, mail: String!) : User!
+    addCredential(id : String!, mail: String!) : User!
+    login(mail: String, password: String!) : String
+    signUp(mail: String, password: String!) : Boolean!
     registerUser(mail: String!) : Boolean!
 }
 

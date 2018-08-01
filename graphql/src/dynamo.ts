@@ -3,7 +3,7 @@ import AWS =  require('aws-sdk'); // eslint-disable-line import/no-extraneous-de
 
 const dynamoDb : AWS.DynamoDB.DocumentClient  = new AWS.DynamoDB.DocumentClient( {
     region: "us-east-2",
-   // endpoint: "http://localhost:8000",
+//    endpoint: "http://localhost:8000",
     convertEmptyValues: true
 }); 
 
